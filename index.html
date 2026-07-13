@@ -171,8 +171,9 @@
             border-color: #7b2fff;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(123, 47, 255, 0.4);
         }
+        /* Кнопка: фиолетовый оттенок, без переливов */
         button {
-            background: linear-gradient(to right, #3b0fff, #00d4ff);
+            background: #4b2a7a; /* тёмный фиолетовый */
             color: #ffffff;
             border: none;
             padding: 16px 40px;
@@ -181,7 +182,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5), 0 8px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 12px rgba(128, 0, 255, 0.5), 0 8px 20px rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -191,22 +192,12 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             position: relative;
-            overflow: hidden;
-        }
-        button::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: buttonShine 3s infinite;
+            /* убираем блик */
         }
         button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 12px 30px rgba(0, 0, 0, 0.7);
+            background: #5e3a8c;
+            box-shadow: 0 0 20px rgba(160, 0, 255, 0.7), 0 12px 30px rgba(0, 0, 0, 0.7);
+            transform: translateY(-2px);
         }
         button:active {
             transform: translateY(1px);
@@ -361,10 +352,7 @@
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-        @keyframes buttonShine {
-            0% { left: -50%; }
-            100% { left: 150%; }
-        }
+        /* удалён keyframes buttonShine */
         @media (max-width: 768px) {
             h1 { font-size: 4rem; }
             .subtitle { font-size: 1.4rem; }
@@ -472,14 +460,13 @@
             const historyElement = document.getElementById('history');
             let history = [];
 
-            // Мягкий победный звук: глухой удар + две ноты
+            // Мягкий победный звук
             let audioCtx = null;
             function playVictorySound() {
                 try {
                     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                     const now = audioCtx.currentTime;
 
-                    // Глухой низкий удар (бас)
                     const bass = audioCtx.createOscillator();
                     const bassGain = audioCtx.createGain();
                     bass.type = 'sine';
@@ -492,7 +479,6 @@
                     bass.start(now);
                     bass.stop(now + 0.3);
 
-                    // Победные ноты (мягкий треугольный сигнал)
                     function playNote(freq, startTime, duration, vol) {
                         const osc = audioCtx.createOscillator();
                         const gain = audioCtx.createGain();
@@ -506,13 +492,9 @@
                         osc.start(startTime);
                         osc.stop(startTime + duration);
                     }
-                    // две ноты: C5 и E5 (примерно 523 Гц и 659 Гц)
                     playNote(523, now + 0.1, 0.15, 0.08);
                     playNote(659, now + 0.2, 0.2, 0.08);
-
-                } catch (e) {
-                    // без звука
-                }
+                } catch (e) {}
             }
 
             participantsInput.addEventListener('change', function() {
