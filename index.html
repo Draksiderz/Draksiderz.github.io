@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рандомайзер для выпускного · Киберпанк</title>
+    <title>Рандомайзер для выпускного Киберпанк</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         @font-face {
@@ -171,9 +171,9 @@
             border-color: #7b2fff;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(123, 47, 255, 0.4);
         }
-        /* Кнопка: фиолетовый оттенок, без переливов */
+        
         button {
-            background: #4b2a7a; /* тёмный фиолетовый */
+            background: #4b2a7a; 
             color: #ffffff;
             border: none;
             padding: 16px 40px;
@@ -192,7 +192,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             position: relative;
-            /* убираем блик */
+        
         }
         button:hover {
             background: #5e3a8c;
@@ -352,7 +352,7 @@
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-        /* удалён keyframes buttonShine */
+       
         @media (max-width: 768px) {
             h1 { font-size: 4rem; }
             .subtitle { font-size: 1.4rem; }
@@ -401,7 +401,7 @@
     </div>
     <script>
         (function() {
-            // Фоновые частицы
+            
             const canvas = document.getElementById('particlesCanvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
@@ -451,7 +451,7 @@
             }
             animateParticles();
 
-            // Рандомайзер
+            
             const participantsInput = document.getElementById('participants');
             const fromInput = document.getElementById('from');
             const toInput = document.getElementById('to');
@@ -460,7 +460,7 @@
             const historyElement = document.getElementById('history');
             let history = [];
 
-            // Мягкий победный звук
+            
             let audioCtx = null;
             function playVictorySound() {
                 try {
